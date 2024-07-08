@@ -58,11 +58,12 @@ class OrderApiController extends Controller
             'car_brand'     => $driver->profile->driver_cars->brand->title ?? '',
             'car_model'     => $driver->profile->driver_cars->model->title ?? '',
             'offer_rate'    => $offer_rate,
-        
+
         ]);
 
 
         $order->offerdriver         = $offer_rate;
+        $order->driver_id        = $driver->id;
         $order->driver_name      = $driver->full_name;
         $order->driver_phone     = $driver->phone_number ?? '';
         $order->car_color        = $driver->profile->driver_cars->color  ?? '';
@@ -107,7 +108,7 @@ class OrderApiController extends Controller
         foreach ($orders as $order) {
             $statusArray[$order->status][] = new OrderResource($order);
         }
-    
+
         return Resp($statusArray, 'success');
     }
     public function get_user_orders(Request $request)
@@ -123,14 +124,14 @@ class OrderApiController extends Controller
         foreach ($orders as $order) {
             $statusArray[$order->status][] = new OrderResource($order);
         }
-    
+
 
         return Resp($statusArray, 'success');
     }
     public function cancelorder(Request $request, Order $order)
     {
         $order->update(['is_canceled' => Carbon::now(), 'status' => 'canceled', 'canceled_by' => Auth::user()->id]);
-    
+
         $data =['status' => 'canceled'];
 
         TripCancel::dispatch( $order, $data );
@@ -170,17 +171,17 @@ class OrderApiController extends Controller
             $baseData['parcel_dimension'] = $request->parcel_dimension ?? null;
             $baseData['parcel_weight'] = $request->parcel_weight ?? null;
             $baseData['comment'] = $request->comment ?? null;
-            
+
             $imageName = time().'.'.$request->parcel_image->extension();
             $request->parcel_image->move(public_path('uploads'), $imageName);
             $imageUrl = url('uploads/'.$imageName); // Generate the full URL
-            
+
             $baseData['parcel_weight'] = $imageUrl;
 
 
-            
+
         }
-        
+
 
         $order = Order::create($baseData);
         $order =  Order::with('user')->find($order->id);
@@ -191,7 +192,7 @@ class OrderApiController extends Controller
     public function startorder(Request $request, Order $order)
     {
         $order->update(['accepted_driver' => Carbon::now(), 'status' => 'started']);
-        
+
         $data =['status' => 'start'];
 
         TripStarted::dispatch($order, $data);
@@ -236,7 +237,7 @@ class OrderApiController extends Controller
     {
         $order = Order::where('user_id', Auth::user()->id)->get();
     }
-    public function current_orders_driver(Request $request)  
+    public function current_orders_driver(Request $request)
     {
         $order = Order::where('driver_id', $request->driver_id)->get();
         $order =  OrderResource::collection($order);

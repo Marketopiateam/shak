@@ -11,7 +11,7 @@ class OrderWithDriverResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        
+
         if(isset($this->offers) && count($this->offers) > 0) {
             $offers = $this->offers->transform(function (OrderOffer $offer) {
                 return (new OutCityOffersResource($offer));
@@ -19,7 +19,7 @@ class OrderWithDriverResource extends JsonResource
         } else {
             $offers = [];
         }
-        
+
 
 
 
@@ -42,8 +42,9 @@ class OrderWithDriverResource extends JsonResource
             'offer_rate'          => $this->service->offer_rate ?? '0',
             'offerdriver'         => $this->offerdriver ?? '',
             'created_at'          => $this->created_at ?? '',
-            'offers'              => (isset($this->offers) && count($this->offers) > 0 ? new OutCityOffersCollection($offers) : []), 
+            'offers'              => (isset($this->offers) && count($this->offers) > 0 ? new OutCityOffersCollection($offers) : []),
         ];
+        $data['driver_id']           = $this->driver_id ?? '';
         $data['driver_name']         = $this->driver_name ?? '';
         $data['driver_phone']        = $this->driver_phone ?? '';
         $data['driver_image']        = $this->user->profile_pic ?? '';
