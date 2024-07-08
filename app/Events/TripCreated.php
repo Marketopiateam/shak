@@ -34,7 +34,7 @@ class TripCreated implements ShouldBroadcast
     public function broadcastWith()
     {
         // return  $this->message;
-        return (new OrderResource($this->trip))->toArray(request());
+        return (new OrderResource((object)$this->trip))->toArray(request());
 
     }
     public function broadcastAs()
