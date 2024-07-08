@@ -15,7 +15,7 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         $data = [
-            'id'          => $this->id,
+            'id'            => $this->id,
             'name'          => $this->full_name,
             'phone'         => $this->phone_number,
             'image'         => $this->imageurl??'',
@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'driver_status' => $this->profile->status  ?? '',
             'is_driver'     => $this->profile != null  ?1:0 ,
             'is_online'     => $this->is_online  ,
-            'service_id'     => $this->profile != null ? $this->profile->service_id : 0 ,
+            'service_id'    => $this->profile != null ? $this->profile->service_id : 0 ,
 
         ];
 
