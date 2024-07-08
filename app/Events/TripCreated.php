@@ -21,7 +21,7 @@ class TripCreated implements ShouldBroadcast
     {
         // $trip = $trip->toArray();
         $this->trip = $trip;
-dd( $this->trip , $trip);
+dd( $this->trip->user_service_id , $trip->user_service_id);
     }
 
 
