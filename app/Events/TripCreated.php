@@ -33,6 +33,7 @@ class TripCreated implements ShouldBroadcast
     }
     public function broadcastWith()
     {
+        var_dump((new OrderResource($this->trip))->toArray(request()));
         // return  $this->message;
         return (new OrderResource($this->trip))->toArray(request());
 
