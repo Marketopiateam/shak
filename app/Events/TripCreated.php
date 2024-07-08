@@ -19,7 +19,7 @@ class TripCreated implements ShouldBroadcast
 
     public function __construct(Order $trip )
     {
-        // $trip = $trip->toArray();
+        $trip = $trip->toArray();
         $this->trip = $trip;
 
     }
