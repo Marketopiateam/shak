@@ -12,7 +12,7 @@ class OrderResource extends JsonResource
 
     public function toArray(Request $request): array
     {
-        dd( $request);
+
         $data =   [
             'id'                  => $this->id,
             'destination_lat'     => $this->destination_lat,
