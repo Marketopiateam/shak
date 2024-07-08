@@ -21,7 +21,7 @@ class TripCreated implements ShouldBroadcast
     {
         // $trip = $trip->toArray();
         $this->trip = $trip;
-dd( $this->trip->user_service_id , $trip->user_service_id);
+dd( new OrderResource($this->trip));
     }
 
 
@@ -34,7 +34,7 @@ dd( $this->trip->user_service_id , $trip->user_service_id);
     public function broadcastWith()
     {
         // return  $this->message;
-        return (new OrderResource((object)$this->trip))->toArray(request());
+        return (new OrderResource($this->trip))->toArray(request());
 
     }
     public function broadcastAs()
