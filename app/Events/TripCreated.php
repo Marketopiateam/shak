@@ -21,8 +21,8 @@ class TripCreated implements ShouldBroadcast
     {
         // $trip = $trip->toArray();
         $this->trip = $trip;
-        var_dump( $trip->user_service_id);
-// dd( (new OrderResource($this->trip))->toArray(request()));
+        var_dump( $trip->user_service_id, $this->trip->user_service_id);
+        // dd( (new OrderResource($this->trip))->toArray(request()));
     }
 
 
