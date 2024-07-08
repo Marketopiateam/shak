@@ -57,11 +57,12 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']
         Route::get('outcity', [ServiceApiController::class, 'outcity']);
         Route::get('all', [ServiceApiController::class, 'all']);
     });
+    
     Route::prefix('order')->group(function () {
         Route::post('/new', [OrderApiController::class, 'neworder']);
         Route::get('/old-for-driver', [OrderApiController::class, 'get_driver_orders']);
         Route::get('/old-for-user', [OrderApiController::class, 'get_user_orders']);
-        
+
         Route::get('/get-out-city-offers/{order_id}', [OrderApiController::class, 'get_out_city_offers']);
 
         Route::get('/get-driver-active-ride', [OrderApiController::class, 'get_driver_active_ride']);

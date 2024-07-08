@@ -19,13 +19,10 @@ class TripCreated implements ShouldBroadcast
 
     public function __construct(Order $trip )
     {
-        // $trip = $trip->toArray();
-        $this->trip = $trip;
-        // var_dump( $trip->user_service_id, $this->trip->user_service_id);
 
+        $this->trip = $trip;
         $this->user_service_id = $trip->user_service_id;
 
-        // dd( (new OrderResource($this->trip))->toArray(request()));
     }
 
 
@@ -37,14 +34,9 @@ class TripCreated implements ShouldBroadcast
     }
     public function broadcastWith()
     {
-        var_dump( $this->user_service_id );
+
         $this->trip->user_service_id = $this->user_service_id ;
-        $orderResource = new OrderResource($this->trip);
-        $orderArray = $orderResource->toArray(request());
-
-
-        return $orderArray;
-        // return (new OrderResource($this->trip))->toArray(request());
+        return (new OrderResource($this->trip))->toArray(request());
 
     }
     public function broadcastAs()
