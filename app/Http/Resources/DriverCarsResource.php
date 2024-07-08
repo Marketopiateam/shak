@@ -20,6 +20,7 @@ class DriverCarsResource extends JsonResource
             "car_brand" =>  $this->brand,
             "car_model" =>  $this->model,
             "color" =>  $this->color,
+            'car_number'=> $this->car_number,
             "release_year" =>  $this->release_year,
             "created_at" =>  $this->created_at,
         ];
