@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'driver_status' => $this->profile->status  ?? '',
             'is_driver'     => $this->profile != null  ?1:0 ,
             'is_online'     => $this->is_online  ,
-            'service_id'     => $this->profile != null ? $this->profile->service_id : null ,
+            'service_id'     => $this->profile != null ? $this->profile->service_id : 0 ,
 
         ];
 

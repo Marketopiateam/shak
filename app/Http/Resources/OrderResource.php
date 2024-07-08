@@ -30,7 +30,7 @@ class OrderResource extends JsonResource
             'driver'                => ($this->driver != null ? new UserResource($this->driver) : ''),
             'user'                => ($this->user != null ? new UserResource($this->user) : ''),
             'when_date'           => $this->when_date ?? '',
-            'service_id'            => $this->service->id ?? '',
+            'inter_city'           => $this->inter_city ?? '',
         ];
 
         return $data;
