@@ -21,7 +21,7 @@ class TripCreated implements ShouldBroadcast
     {
         // $trip = $trip->toArray();
         $this->trip = $trip;
-dd( new OrderResource($this->trip));
+dd( (new OrderResource($this->trip))->toArray(request()));
     }
 
 
