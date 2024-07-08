@@ -75,7 +75,7 @@ class AuthenticationController extends Controller
     {
         $payment        =    PaymentMethod::find($request->id);
         $payment        = $this->tap($request->value);
-        dd($payment);
+       
         $redirect_url   = $payment['redirect_url'];
         // $paymentjson =   json_encode($payment);
         // $order->payment_gateway_data = $paymentjson;
@@ -84,7 +84,7 @@ class AuthenticationController extends Controller
         // $order->save();
         return  $redirect_url;
     }
-    public function get_docs()  
+    public function get_docs()
     {
         $driverID = $this->getUserIDByToken(request()->bearerToken());
         $user  = User::with('profile', 'profile.car_licenses', 'profile.identity', 'profile.driver_licenses', 'profile.driver_cars')->find($driverID);

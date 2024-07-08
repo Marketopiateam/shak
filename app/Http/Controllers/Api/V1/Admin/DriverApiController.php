@@ -12,13 +12,14 @@ use App\Helpers\ResponseHelper;
 use App\Models\DriverCarLicense;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Traits\ImageProcessing;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\PersonalAccessToken;
 
 class DriverApiController extends Controller
 {
-    use ResponseHelper,ImageProcessing;
+    use ResponseHelper, ImageProcessing;
     public function driver_registration(Request $request)
     {
 
@@ -31,7 +32,6 @@ class DriverApiController extends Controller
 
             if ($request->has('criminal_record_image')) {
                 $criminal_record_image = $this->saveImageAndThumbnail($request->criminal_record_image, false, $user_id, 'DriverLicense');
-
             }
             if ($request->has('front_identity_image')) {
                 $front_identity_image = $this->saveImageAndThumbnail($request->front_identity_image, false, $user_id, 'DriverLicense');
@@ -62,9 +62,9 @@ class DriverApiController extends Controller
             }
 
             $DriverProfile =  DriverProfile::create([
-                'user_id' => $user_id, 
-                'birth_date' => $request->birth_date,  
-                'id_number' => $request->id_number,   
+                'user_id' => $user_id,
+                'birth_date' => $request->birth_date,
+                'id_number' => $request->id_number,
                 'criminal_record_image' => $criminal_record_image['image'],
                 'expiry_date' => $request->criminal_expiry_date,
                 'service_id' => $request->service_id
@@ -78,28 +78,25 @@ class DriverApiController extends Controller
             return $this->apiResponseHandler(200, true, 'succes');
         } catch (\Exception $e) {
             DB::rollback();
-            return $this->apiResponseHandler(400, false, 'error',$e->getMessage());
+            return $this->apiResponseHandler(400, false, 'error', $e->getMessage());
         }
     }
     public function change_service(Request $request)
     {
         $driverID = $this->getUserIDByToken(request()->bearerToken());
-        DriverProfile::where([
-            'service_id'=> $request->service_id
+        
+        DriverProfile::where('user_id', $driverID)->update([
+            'service_id' => $request->service_id
         ]);
         return $this->apiResponseHandler(200, true, 'success');
-
     }
     public function getUserIDByToken($hashedToken)
     {
         $token = PersonalAccessToken::findToken($hashedToken);
-        if($token != null) {
+        if ($token != null) {
             return $token->tokenable_id;
-
         } else {
             return false;
         }
-
     }
-
 }
