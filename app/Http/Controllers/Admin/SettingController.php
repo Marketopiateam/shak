@@ -13,6 +13,7 @@ class SettingController extends BaseController
         parent::__construct($model);
     }
     public function update(Request $request){
+        dd($array = $request->all());
         $row = $this->model->firstOrFail();
         $increase = $request->input('group-a');
         $increases = [];
