@@ -13,20 +13,10 @@ class SettingController extends BaseController
         parent::__construct($model);
     }
     public function update(Request $request){
-        dd($array = $request->all());
         $row = $this->model->firstOrFail();
-        $increase = $request->input('group-a');
-        $increases = [];
-        // dd($increase);
-        foreach ($increase as $value) {
-            foreach ($value as $item) {
-                $increases[] = $item;
-
-            }
-        }
         $array = $request->all();
         unset($array['group-a']);
-        $row = $row->update($array + ['increase' => json_encode($increases)]);
+        $row = $row->update($array + ['increase' => json_encode($request->increase)]);
         return redirect()->route('admin.settings.index', 1);
 
     }
