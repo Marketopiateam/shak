@@ -135,8 +135,14 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            
                             <div class="form-repeater">
+                                <div data-repeater-list="group-a">
+                                    <div data-repeater-item>
+                                    </div>
+                                </div>
+                            </div>
+
+                           {{--  <div class="form-repeater">
                                 <div data-repeater-list="group-a">
                                 @if ($row->increase != null)
                                 @php
@@ -186,7 +192,7 @@
                                   </button>
                                 </div>
                                 <br><br>
-                              </div>
+                              </div> --}}
                         </div>
                        
 
