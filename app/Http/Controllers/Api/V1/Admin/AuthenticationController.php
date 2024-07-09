@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Resources\UserDocsResource;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\SignUp;
@@ -23,6 +24,10 @@ class AuthenticationController extends Controller
     public function __construct(UsersRepositoryinterface $userRepositry)
     {
         $this->userRepositry = $userRepositry;
+    }
+    public function settings()
+    {
+        return Resp(Setting::first(), 'success');
     }
     public function getUserIDByToken($hashedToken)
     {

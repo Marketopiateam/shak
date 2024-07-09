@@ -41,6 +41,7 @@ Route::get('country', [AuthenticationController::class, 'country']);
 Route::get('city/{id}', [AuthenticationController::class, 'city']);
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']], function () {
+    Route::get('settings', [AuthenticationController::class, 'settings']);
 
     Route::post('driver/registration', [DriverApiController::class, 'driver_registration']);
     Route::post('driver/update-service', [DriverApiController::class, 'change_service']);
