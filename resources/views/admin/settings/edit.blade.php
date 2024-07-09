@@ -136,8 +136,9 @@
                         <div class="col-12">
                             <div class="form-repeater">
                                 <div data-repeater-list="increase">
-                                    @foreach (json_decode($row->increase) as $item)
                                     @if ($row->increase != null)
+
+                                    @foreach (json_decode($row->increase) as $item)
                                     <div data-repeater-item>
                                         @php
                                             $c = 0;
@@ -147,8 +148,8 @@
                                             <input type="number" value="{{ $item }}" step="0.5" name="increase[]" id="form-repeater-{{ $c }}-1" class="form-control" placeholder="{{ __('cruds.setting.fields.increase') }}" />
                                           </div>
                                     </div>
-                                    @endif
                                     @endforeach
+                                    @endif
                                 </div>
                             </div>
 
