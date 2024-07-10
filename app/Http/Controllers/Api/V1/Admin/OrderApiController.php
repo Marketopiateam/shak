@@ -176,7 +176,7 @@ class OrderApiController extends Controller
             $request->parcel_image->move(public_path('uploads'), $imageName);
             $imageUrl = url('uploads/'.$imageName); // Generate the full URL
 
-            $baseData['parcel_weight'] = $imageUrl;
+            $baseData['parcel_image'] = $imageUrl;
 
 
 
