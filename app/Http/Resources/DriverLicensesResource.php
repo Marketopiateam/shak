@@ -16,9 +16,9 @@ class DriverLicensesResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "front_license_image" => url('files/'.$this->driver_profile->user_id.'/'. $this->front_license_image),
-            "back_license_image" => url('files/'.$this->driver_profile->user_id.'/'. $this->back_license_image),
-            "driver_with_license_image" => url('files/'.$this->driver_profile->user_id.'/'. $this->driver_with_license_image),
+            "front_license_image" => url('files/DriverLicense/'.$this->driver_profile->user_id.'/'. $this->front_license_image),
+            "back_license_image" => url('files/DriverLicense/'.$this->driver_profile->user_id.'/'. $this->back_license_image),
+            "driver_with_license_image" => url('files/DriverLicense/'.$this->driver_profile->user_id.'/'. $this->driver_with_license_image),
             "expiry_date" => $this->expiry_date,
 
         ];
