@@ -15,7 +15,7 @@ class UserDocsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'criminal_record_image'=> url('files/DriverLicense/'.$this->id.'/'. $this->profile->criminal_record_image),
+            'criminal_record_image'=> $this->profile->criminal_record_image != null ? url('files/DriverLicense/'.$this->id.'/'. $this->profile->criminal_record_image) : '',
             'driver_cars'=> new DriverCarsResource($this->profile->driver_cars),
             'car_licenses'=> new CarLicensesResource($this->profile->car_licenses),
             'identity'=> new IdentityResource($this->profile->identity),
