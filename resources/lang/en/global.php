@@ -325,5 +325,9 @@ return [
     'settings'                       => 'Settings',
     'inter_city'                     => 'Inter City',
     'out_city'                       => 'Out City',
+    'type'                              => 'Type',
+    'order'                             => 'Order',
+    'driver'                            => 'Driver',
+    'user'                              => 'User'            
 
 ];
