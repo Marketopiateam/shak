@@ -18,9 +18,7 @@ use App\Http\Controllers\Api\V1\Admin\DriverApiController;
 
 
 Route::post('test', [AuthenticationController::class, 'test']);
-Route::delete('v1/account/delete/{id}', function ($id) {
-    return response()->json(['status' => true, 'message' => 'success']);
-});
+
 
 
 Route::prefix('v1/user')->group(function () {

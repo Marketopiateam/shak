@@ -36,7 +36,9 @@ use App\Http\Controllers\Admin\WalletTransactionController;
 
 // WebSocketsRouter::webSocket('/my-websocket', \App\MyCustomWebSocketHandler::class);
 Broadcast::routes();
-
+Route::get('/account/delete/{id}', function ($id) {
+    return 'SUCCESS';
+});
 Route::get('test', function () {
     return  database_path('migrations');
 
