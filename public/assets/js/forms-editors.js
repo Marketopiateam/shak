@@ -5,28 +5,6 @@
 'use strict';
 
 (function () {
-  // Snow Theme
-  // --------------------------------------------------------------------
-  const snowEditor = new Quill('#snow-editor', {
-    bounds: '#snow-editor',
-    modules: {
-      formula: true,
-      toolbar: '#snow-toolbar'
-    },
-    theme: 'snow'
-  });
-
-  // Bubble Theme
-  // --------------------------------------------------------------------
-  const bubbleEditor = new Quill('#bubble-editor', {
-    modules: {
-      toolbar: '#bubble-toolbar'
-    },
-    theme: 'bubble'
-  });
-
-  // Full Toolbar
-  // --------------------------------------------------------------------
   const fullToolbar = [
     [
       {
@@ -81,8 +59,17 @@
     ['link', 'image', 'video', 'formula'],
     ['clean']
   ];
-  const fullEditor = new Quill('#full-editor', {
-    bounds: '#full-editor',
+  const fullEditor = new Quill('.content_en', {
+    bounds: '.content_en',
+    placeholder: 'Type Something...',
+    modules: {
+      formula: true,
+      toolbar: fullToolbar
+    },
+    theme: 'snow'
+  });
+  const fullEditor2 = new Quill('.content_ar', {
+    bounds: '.content_ar',
     placeholder: 'Type Something...',
     modules: {
       formula: true,

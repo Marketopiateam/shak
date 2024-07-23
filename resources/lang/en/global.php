@@ -328,6 +328,8 @@ return [
     'type'                              => 'Type',
     'order'                             => 'Order',
     'driver'                            => 'Driver',
-    'user'                              => 'User'            
+    'user'                              => 'User'     , 
+    'content_en'                        => 'Content EN',
+    'content_ar'                        => 'Content AR',      
 
 ];

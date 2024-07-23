@@ -3,6 +3,7 @@
 
 use App\Events\MessageSent;
 use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\PageController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CityController;
@@ -116,6 +117,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth:admi
 
     // Admins
     Route::resource('admins', AdminController::class);
+
+
+    Route::resource('pages', PageController::class);
 
     // create Marketopia Browser recourse route
     Route::resource('marketopia-browsers', MarketopiaBrowserController::class);
