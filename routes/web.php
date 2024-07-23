@@ -4,6 +4,7 @@
 use App\Events\MessageSent;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\PageController;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CityController;
@@ -39,6 +40,12 @@ Broadcast::routes();
 Route::get('/account/delete/{id}', function ($id) {
     return 'SUCCESS';
 });
+
+Route::get('/page/{slug}', function ($slug) {
+    $page = Page::where('slug', '=', $slug)->first();
+    return view('welcome', compact('page'));
+});
+
 Route::get('test', function () {
     return  database_path('migrations');
 
