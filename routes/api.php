@@ -35,6 +35,7 @@ Route::prefix('v1/auth')->group(function () {
 //'auth:sanctum'
 Route::get('v1/send/chat', [ChatApiController::class, 'send_message']);
 Route::get('v1/user/charge_wallet', [PaymentsApiController::class, 'charge_wallet']);
+Route::get('v1/user/transactions', [PaymentsApiController::class, 'transactions']);
 
 Route::get('v1/car/brands', [CarApiController::class, 'get_car_brands']);
 Route::get('v1/car/models', [CarApiController::class, 'get_car_models']);

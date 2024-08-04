@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('payment_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('payment_id')->index();
-            $table->boolean('pending')->default(1);
+            $table->enum('status', ['success','failed','pending','rejected'])->default(1);
+            $table->enum('type', ['deposit', 'withdraw'])->default(1);
             $table->boolean('success')->default(0);
             $table->string('amount')->default(0);
             $table->string('payment_method')->default('card');

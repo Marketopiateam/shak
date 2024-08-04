@@ -26,8 +26,9 @@ class PaymentsApiController extends Controller
         $userID = $this->getUserIDByToken(request()->bearerToken());
         PaymentTransaction::create([
             'payment_id'        => $payment['payment_id'],
-            'pending'           => 1,
+            'status'           => 'pending',
             'success'           => 0,
+            'amount'            => $request->value,
             'payment_method'    => 'card',
             'payment_gateway'   => 'paymob',
             'userID'            => $userID
@@ -43,12 +44,11 @@ class PaymentsApiController extends Controller
         $payment        = new PaymobPayment();
         $response       = $payment->verify($request);
         $status         = (strtolower($response['process_data']['success']) === 'false') ? false : true;
+        $Transaction    = PaymentTransaction::where('payment_id','=',$response['payment_id'])->first();
         if($status) {
-            $Transaction    = PaymentTransaction::where('payment_id','=',$response['payment_id'])->first();
             $Transaction->update([
-                'pending'   => (strtolower($response['process_data']['pending']) === 'false') ? false : true ,
+                'status'           => 'success',
                 'success'   => (strtolower($response['process_data']['success']) === 'false') ? false : true ,
-                'amount'    => $response['process_data']['amount_cents'] / 100,
             ]);
             $user = User::find($Transaction->userID);
             $user->update([
@@ -58,10 +58,20 @@ class PaymentsApiController extends Controller
                 'success'   => $response['process_data']['success']
             ]);
         } else {
+            $Transaction->update([
+                'status'           => 'failed',
+                'success'   => (strtolower($response['process_data']['success']) === 'false') ? false : true ,
+            ]);
             return response()->json([
                 'success'   => $status
             ]);
-        }
-        
+        }   
+    }
+    public function transactions() 
+    {
+        $userID             = $this->getUserIDByToken(request()->bearerToken());
+        $transactions       = PaymentTransaction::where('payment_id','=',$userID)->get();
+        return    resp($transactions, 'success', 200);
+
     }
 }
