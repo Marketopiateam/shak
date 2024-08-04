@@ -18,6 +18,7 @@ class AdminController extends BaseController
         }
         protected function append(){
             return [];
+            
         }
         public function store(StoreAdminRequest $request){
             $requestArray = $request->all();

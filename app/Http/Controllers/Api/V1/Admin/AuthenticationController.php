@@ -76,19 +76,7 @@ class AuthenticationController extends Controller
         return  Resp(['is_online' => $user->is_online], 'success', 200, true);
     }
 
-    public function charge_wallet(Request $request)
-    {
-        $payment        =    PaymentMethod::find($request->id);
-        $payment        = $this->tap($request->value);
-       
-        $redirect_url   = $payment['redirect_url'];
-        // $paymentjson =   json_encode($payment);
-        // $order->payment_gateway_data = $paymentjson;
-        // $order->payment_id = $payment['payment_id'];
-        // $order->payment_method = $request['formData']['gateway'];
-        // $order->save();
-        return  $redirect_url;
-    }
+    
     public function get_docs()
     {
         $driverID = $this->getUserIDByToken(request()->bearerToken());

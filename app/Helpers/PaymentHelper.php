@@ -5,7 +5,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\PersonalAccessToken;
 use Nafezly\Payments\Classes\PaymobPayment;
-use Nafezly\Payments\Classes\TapPayment;
 
 trait PaymentHelper
 {
@@ -15,7 +14,7 @@ trait PaymentHelper
     {
         $userID = $this->getUserIDByToken(request()->bearerToken());
         $user = User::find($userID);
-        $payment = new TapPayment();
+        $payment = new PaymobPayment();
         $res = $payment->pay(
             $amount,
             $user_id            = $user->id,
