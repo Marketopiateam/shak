@@ -40,20 +40,28 @@ class PaymentsApiController extends Controller
 
     public function payment_verify(Request $request) 
     {
-        $payment    = new PaymobPayment();
+        $payment        = new PaymobPayment();
         $response       = $payment->verify($request);
-        $Transaction    = PaymentTransaction::where('payment_id','=',$response['payment_id'])->first();
-        $Transaction->update([
-            'pending'   => (strtolower($response['process_data']['pending']) === 'false') ? false : true ,
-            'success'   => (strtolower($response['process_data']['success']) === 'false') ? false : true ,
-            'amount'    => $response['process_data']['amount_cents'] / 100,
-        ]);
-        $user = User::find($Transaction->userID);
-        $user->update([
-            'wallet_amount' => $user->wallet_amount + ($response['process_data']['amount_cents'] / 100)
-        ]);
-        return response()->json([
-            'success'   => $response['process_data']['success']
-        ]);
+        $status         = (strtolower($response['process_data']['success']) === 'false') ? false : true;
+        if($status) {
+            $Transaction    = PaymentTransaction::where('payment_id','=',$response['payment_id'])->first();
+            $Transaction->update([
+                'pending'   => (strtolower($response['process_data']['pending']) === 'false') ? false : true ,
+                'success'   => (strtolower($response['process_data']['success']) === 'false') ? false : true ,
+                'amount'    => $response['process_data']['amount_cents'] / 100,
+            ]);
+            $user = User::find($Transaction->userID);
+            $user->update([
+                'wallet_amount' => $user->wallet_amount + ($response['process_data']['amount_cents'] / 100)
+            ]);
+            return response()->json([
+                'success'   => $response['process_data']['success']
+            ]);
+        } else {
+            return response()->json([
+                'success'   => $status
+            ]);
+        }
+        
     }
 }
