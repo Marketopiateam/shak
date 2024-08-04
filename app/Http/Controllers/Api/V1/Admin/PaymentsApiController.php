@@ -20,7 +20,8 @@ class PaymentsApiController extends Controller
     }
     public function charge_wallet(Request $request)
     {
-        $payment        = $this->tap($request->value);       
+        $payment        = $this->tap($request->value); 
+        dd($payment);      
         $redirect_url   = $payment['redirect_url'];
         return    resp($redirect_url, 'success', 200);
 
