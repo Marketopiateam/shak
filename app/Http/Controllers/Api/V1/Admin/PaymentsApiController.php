@@ -8,6 +8,7 @@ use App\Models\PaymentMethod;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Nafezly\Payments\Classes\PaymobPayment;
 
 class PaymentsApiController extends Controller
 {
@@ -27,6 +28,8 @@ class PaymentsApiController extends Controller
 
     public function payment_verify(Request $request) 
     {
-        dd($request->all());
+        $payment = new PaymobPayment();
+        $response = $payment->verify($request);
+        dd($response);
     }
 }
