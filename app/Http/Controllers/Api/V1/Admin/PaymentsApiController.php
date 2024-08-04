@@ -70,7 +70,7 @@ class PaymentsApiController extends Controller
     public function transactions() 
     {
         $userID             = $this->getUserIDByToken(request()->bearerToken());
-        $transactions       = PaymentTransaction::where('payment_id','=',$userID)->get();
+        $transactions       = PaymentTransaction::where('userID','=',$userID)->get();
         return    resp($transactions, 'success', 200);
 
     }
