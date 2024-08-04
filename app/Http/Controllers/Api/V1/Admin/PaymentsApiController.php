@@ -52,7 +52,7 @@ class PaymentsApiController extends Controller
         $user->update([
             'wallet_amount' => $user->wallet_amount + ($response['process_data']['amount_cents'] / 100)
         ]);
-        return redirect()->json([
+        return response()->json([
             'success'   => $response['process_data']['success']
         ]);
     }
