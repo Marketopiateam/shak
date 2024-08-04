@@ -44,9 +44,9 @@ class PaymentsApiController extends Controller
         $response       = $payment->verify($request);
         $Transaction    = PaymentTransaction::where('payment_id','=',$response['payment_id'])->first();
         $Transaction->update([
-            'pending' => $response['process_data']['pending'],
-            'success' => $response['process_data']['success'],
-            'amount' => $response['process_data']['amount_cents'] / 100,
+            'pending'   => (strtolower($response['process_data']['pending']) === 'false') ? false : true ,
+            'success'   => (strtolower($response['process_data']['success']) === 'false') ? false : true ,
+            'amount'    => $response['process_data']['amount_cents'] / 100,
         ]);
         $user = User::find($Transaction->userID);
         $user->update([
