@@ -4,6 +4,7 @@
 use App\Events\MessageSent;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Api\V1\Admin\PaymentsApiController;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\AdminController;
@@ -61,7 +62,7 @@ Route::get('welcome', function () {
     // $user->save();
 });
 Route::redirect('/', '/login');
-
+Route::get('/payments/verify/{payment?}',[PaymentsApiController::class,'payment_verify'])->name('verify-payment');
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth:admin']], function () {

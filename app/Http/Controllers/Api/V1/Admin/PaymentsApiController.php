@@ -24,4 +24,9 @@ class PaymentsApiController extends Controller
         return    resp($redirect_url, 'success', 200);
 
     }
+
+    public function payment_verify(Request $request) 
+    {
+        dd($request->all());
+    }
 }
