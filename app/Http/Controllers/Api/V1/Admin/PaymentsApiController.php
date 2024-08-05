@@ -80,7 +80,7 @@ class PaymentsApiController extends Controller
         $userID         = $this->getUserIDByToken(request()->bearerToken());
         $user           = User::find($userID); 
         $transactions   = WithdrawRequest::create([
-            'status'    => $request->value,
+            'amount'    => $request->value,
             'userID'    => $userID
         ]);
         $user->update([
