@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PaymentMethod;
 use App\Models\PaymentTransaction;
 use App\Models\User;
+use App\Models\WithdrawRequest;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -71,6 +72,30 @@ class PaymentsApiController extends Controller
     {
         $userID             = $this->getUserIDByToken(request()->bearerToken());
         $transactions       = PaymentTransaction::where('userID','=',$userID)->get();
+        return    resp($transactions, 'success', 200);
+
+    }
+    public function withdraw_request(Request $request) 
+    {
+        $userID         = $this->getUserIDByToken(request()->bearerToken());
+        $user           = User::find($userID); 
+        $transactions   = WithdrawRequest::create([
+            'status'    => $request->value,
+            'userID'    => $userID
+        ]);
+        $user->update([
+            'wallet_amount' => $user->wallet_amount - $request->value,
+            'pending_wallet' => $user->pending_wallet + $request->value,
+        ]);
+
+        return    resp($transactions, 'success', 200);
+
+    }
+    public function get_withdraw_request() 
+    {
+        $userID         = $this->getUserIDByToken(request()->bearerToken());
+        $user           = User::find($userID); 
+        $transactions   = WithdrawRequest::where('userID', '=', $userID)->get();
         return    resp($transactions, 'success', 200);
 
     }
