@@ -18,7 +18,7 @@ class PaymentsController extends Controller
     }
     function requests() 
     {
-        $rows       = WithdrawRequest::orderBy('success', 'asc')->paginate(20);
+        $rows       = WithdrawRequest::with('user')->orderBy('success', 'asc')->paginate(20);
         $pageTitle = __('app.withdraw_requests');
 
         return view('admin.payments.requests', compact('rows', 'pageTitle'));
