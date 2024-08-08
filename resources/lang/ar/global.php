@@ -323,5 +323,7 @@ return [
     'calendar'                       => 'التقويم',
     'messenger'                      => 'مراسل',
     'settings'                       => 'الاعدادات',
+        'reject'            => 'رفض',
+    'accept'            => 'موافقة'
 
 ];

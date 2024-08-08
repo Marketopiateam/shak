@@ -332,7 +332,9 @@ return [
     'content_en'                        => 'Content EN',
     'content_ar'                        => 'Content AR',     
     'transactions' => 'Transactions',
-    'withdraw_requests' => 'Withdraw Requests'
+    'withdraw_requests' => 'Withdraw Requests',
+    'reject'            => 'Reject',
+    'accept'            => 'Accept'
  
 
 ];
