@@ -34,7 +34,7 @@
                 <td class="text-center">{{ $item->id }}</td>
                 <td class="text-center">{{ $item->payment_id }}</td>
                 <td class="text-center">{{ $item->status }}</td>
-                <td class="text-center">{{ number_format($item->amount, 2) }}</td>
+                <td class="text-center">{{ number_format($item->amount, 2) }} L.E</td>
                 <td class="text-center">{{ $item->payment_method }}</td>
                 <td class="text-center">{{ $item->payment_gateway }}</td>
                 <td class="text-center">{{ $item->user->email }}</td>

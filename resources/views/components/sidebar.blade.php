@@ -158,7 +158,7 @@
                 </li>
                 <li class="menu-item {{ request()->is('admin/payments/requests') ? 'active' : '' }}">
                     <a href="{{ route('admin.payments.requests') }}" class="menu-link">
-                        <div data-i18n="Content navbar">{{ __('global.payments_requests') }}</div>
+                        <div data-i18n="Content navbar">{{ __('global.withdraw_requests') }}</div>
                     </a>
                 </li>
                

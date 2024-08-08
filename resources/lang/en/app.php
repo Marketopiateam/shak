@@ -92,4 +92,5 @@ return [
     'payment_method' => 'Payment Method',
     'payment_gateway' => 'Payment gateway',
     'user' => 'User',
+    'withdraw_requests' => 'Withdraw Requests',
 ];

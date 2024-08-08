@@ -92,4 +92,5 @@ return [
     'payment_method' => 'وسيلة الدفع',
     'payment_gateway' => 'بوابة الدفع',
     'user' => 'المستخدم',
+    'withdraw_requests' => 'طلبات السحب',
 ];
