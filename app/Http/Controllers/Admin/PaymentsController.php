@@ -14,14 +14,14 @@ class PaymentsController extends Controller
         $rows       = PaymentTransaction::orderBy('id', 'desc')->paginate(20);
         $pageTitle = __('app.payments');
 
-        return view('admin.payments.index', compact('rows'));
+        return view('admin.payments.index', compact('rows', 'pageTitle'));
     }
     function requests() 
     {
         $rows       = WithdrawRequest::orderBy('success', 'asc')->paginate(20);
         $pageTitle = __('app.withdraw_requests');
 
-        return view('admin.payments.requests', compact('rows'));
+        return view('admin.payments.requests', compact('rows', 'pageTitle'));
 
     }
     
