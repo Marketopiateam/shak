@@ -33,7 +33,15 @@
             <tr>
                 <td class="text-center">{{ $item->id }}</td>
                 <td class="text-center">{{ $item->payment_id }}</td>
-                <td class="text-center">{{ $item->status }}</td>
+                <td class="text-center">
+                    @if ($item->status == 'success')
+                    <span class="badge bg-success">{{ $item->status }}</span>
+                    @elseif ($item->status == 'pending')
+                    <span class="badge bg-warning">{{ $item->status }}</span>
+                    @elseif ($item->status == 'failed')
+                    <span class="badge bg-danger">{{ $item->status }}</span>
+                    @endif
+                </td>
                 <td class="text-center">{{ number_format($item->amount, 2) }} L.E</td>
                 <td class="text-center">{{ $item->payment_method }}</td>
                 <td class="text-center">{{ $item->payment_gateway }}</td>
