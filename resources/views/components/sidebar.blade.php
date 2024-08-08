@@ -148,7 +148,7 @@
         <li class="menu-item menu-item {{ request()->is('admin/payments*') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-car"></i>
-                <div data-i18n="Layouts">{{ trans('global.payments') }}</div>
+                <div data-i18n="Layouts">{{ trans('global.payments.title') }}</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ request()->is('admin/payments') ? 'active' : '' }}">
