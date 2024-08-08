@@ -11,7 +11,7 @@ class PaymentsController extends Controller
 {
     function index() 
     {
-        $rows       = PaymentTransaction::orderBy('id', 'desc')->paginate(20);
+        $rows       = PaymentTransaction::with('user')->orderBy('id', 'desc')->paginate(20);
         $pageTitle = __('app.payments');
 
         return view('admin.payments.index', compact('rows', 'pageTitle'));
