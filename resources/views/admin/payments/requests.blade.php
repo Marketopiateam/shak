@@ -42,12 +42,19 @@
                     @endif
                 </td>
                 <td class="text-center">{{ number_format($item->amount, 2) }} L.E</td>
-                <td class="text-center">{{ $item->note }}</td>
+                <td class="text-center">
+                  @if ($item->note == null)
+                  <span class="badge bg-danger">null</span>
+
+                  @else
+                      {{ $item->note }}
+                  @endif
+                </td>
                 <td class="text-center">{{ $item->user->email }}</td>
                 <td>
                   <a class="btn btn-success btn-sm me-1" href="{{ route('admin.payments.accept', $item->id) }}">
                     <i class="ti ti-edit me-1"></i>
-                    {{ __('global.edit') }}
+                    {{ __('global.accept') }}
                 </a>    
                 <a class="btn btn-danger btn-sm me-1" href="{{ route('admin.payments.reject', $item->id) }}">
                     <i class="ti ti-eye me-1"></i>
