@@ -86,4 +86,10 @@ return [
     'are_you_sure'              => 'Are you sure',
     'activated_successfully'              => 'Activated Successfully',
     'blocked_successfully'              => 'Blocked Successfully',
+
+    'payment_id' => 'Payment ID',
+    'amount' => 'Amount',
+    'payment_method' => 'Payment Method',
+    'payment_gateway' => 'Payment gateway',
+    'user' => 'User',
 ];

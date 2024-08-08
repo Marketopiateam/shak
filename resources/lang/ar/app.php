@@ -85,4 +85,11 @@ return [
     'are_you_sure' => 'هل أنت متأكد',
     'activated_successfully' => 'تم التفعيل بنجاح',
     'blocked_successfully' => 'تم الحظر بنجاح',
+
+
+    'payment_id' => 'كود بوابة الدفع',
+    'amount' => 'المبلغ',
+    'payment_method' => 'وسيلة الدفع',
+    'payment_gateway' => 'بوابة الدفع',
+    'user' => 'المستخدم',
 ];

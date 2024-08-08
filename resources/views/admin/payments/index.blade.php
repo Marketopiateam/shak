@@ -26,7 +26,6 @@
             <th class="text-center">{{ __('app.payment_method') }}</th>
             <th class="text-center">{{ __('app.payment_gateway') }}</th>
             <th class="text-center">{{ __('app.user') }}</th>
-            <th class="text-center">{{ __('app.control') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -39,19 +38,7 @@
                 <td class="text-center">{{ $item->payment_method }}</td>
                 <td class="text-center">{{ $item->payment_gateway }}</td>
                 <td class="text-center">{{ $item->user->email }}</td>
-                <td>
-                    <div class="d-flex justify-content-center">
-                        <a class="btn btn-primary btn-sm me-1" href="{{ route('admin.payments.accept', $item->id) }}">
-                            <i class="ti ti-edit me-1"></i>
-                            {{ __('global.edit') }}
-                        </a>    
-                        <a class="btn btn-danger btn-sm me-1" href="{{ route('admin.payments.reject', $item->id) }}">
-                            <i class="ti ti-eye me-1"></i>
-                            {{ __('global.show') }}
-                        </a>    
-                       
-                    </div>    
-                </td>
+                
             </tr>
             @endforeach
 
