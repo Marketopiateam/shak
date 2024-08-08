@@ -4,6 +4,7 @@
 use App\Events\MessageSent;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Api\V1\Admin\PaymentsApiController;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -137,6 +138,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth:admi
     // Chat
     Route::get('chats', [ChatController::class, 'index'])->name('chats.index');
     Route::get('chats/single/{id}', [ChatController::class, 'single'])->name('chats.single');
+
+    Route::get('payments', [PaymentsController::class, 'index'])->name('payments.index');
+    Route::get('payments/requests', [PaymentsController::class, 'requests'])->name('payments.requests');
+    Route::get('payments/{id}/accept', [PaymentsController::class, 'accept'])->name('payments.accept');
+    Route::get('payments/{id}/reject', [PaymentsController::class, 'reject'])->name('payments.reject');
 
 });
 

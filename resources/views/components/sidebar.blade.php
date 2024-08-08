@@ -143,6 +143,29 @@
             </ul>
         </li>
         @endcan
+
+
+        <li class="menu-item menu-item {{ request()->is('admin/payments*') ? 'active open' : '' }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-car"></i>
+                <div data-i18n="Layouts">{{ trans('global.payments') }}</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ request()->is('admin/payments') ? 'active' : '' }}">
+                    <a href="{{ route('admin.payments.index') }}" class="menu-link">
+                        <div data-i18n="Collapsed menu">{{ __('global.transactions') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ request()->is('admin/payments/requests') ? 'active' : '' }}">
+                    <a href="{{ route('admin.payments.requests') }}" class="menu-link">
+                        <div data-i18n="Content navbar">{{ __('global.payments_requests') }}</div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+
+
         @can('setting_access')
         <li class="menu-item {{ request()->is('admin/settings*') ? 'active' : '' }}">
             <a href="{{ route('admin.settings.index', 1) }}" class="menu-link">
